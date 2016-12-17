@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+.project_box{
+	border: 2px solid lightblue;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+}

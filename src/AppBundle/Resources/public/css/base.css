@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+html{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	width: 100%;
+}
+
+#site_header{
+	width: 100%;
+	border-bottom: 2px solid black;
+	margin-bottom: 2em;
+}
+
+#site_logo{
+	width: 100%;
+}

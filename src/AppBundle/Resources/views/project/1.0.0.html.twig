@@ -1,0 +1,25 @@
+{% extends 'AppBundle:base:1.0.0.html.twig' %}
+
+{% block breadcrumb %}
+	<p class='breadcum'>
+		<a class='breadcrum_link' href="{{ path('homepage') }}">home</a>
+	</p>
+{% endblock %}
+
+{% block content %}
+	<h2 class='project_title'>{{ project.getName() }}</h2>
+	<ul class='build_box list-group'>
+	{% for build in builds %}
+		<li class='build_list'>
+			<a class='build_link list-group-item' href="{{ path('buildpage', {'projectName': project.getName(), 'buildName': build.getName()}) }}">
+			    {{ build.getName() }} {{ build|buildStatus }}
+		    	<span class="badge">
+		    		{% set fileCount = build.getFilesCount() %}
+		    	    {{ fileCount }}
+		    	    file{% if fileCount > 9 %}s{% endif %}
+	    	    </span>
+		    </a>
+	    </li>
+	{% endfor %}
+	</ul>
+{% endblock %}

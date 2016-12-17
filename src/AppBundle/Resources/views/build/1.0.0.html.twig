@@ -1,0 +1,36 @@
+{% extends 'AppBundle:base:1.0.0.html.twig' %}
+
+{% block style %}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block javascript %}
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	{% javascripts '@AppBundle/Resources/public/js/*.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block breadcrumb %}
+	<p class='breadcum'>
+		<a class='breadcrum_link' href="{{ path('homepage') }}">home</a>
+	    .
+		<a class='breadcrum_link' href="{{ path('projectpage', {'projectName':project.getName()}) }}">
+		    {{ project.getName() }}
+	    </a>
+	</p>
+{% endblock %}
+
+{% block content %}
+	<h2 class='build_title'>{{ project.getName() }} - {{ build.getName }} {{ build|buildStatus }}</h2>
+	
+	<div class='file_box accordion'>
+	{% for file in build.getFileNames() %}
+	    <h3 class='file_title'>{{ file }}</h3>
+	    <div class='file_content'>
+	    	{{ build.getFileContent(file)|raw }}
+	    </div>
+	{% endfor %}
+	</div>
+{% endblock %}

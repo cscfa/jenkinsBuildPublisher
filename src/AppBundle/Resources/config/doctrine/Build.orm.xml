@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Build" table="build">
+        <id name="id" type="guid">
+            <generator strategy="UUID" />
+        </id>
+        <field name="name" type="string" length="50" />
+        <many-to-one field="project" target-entity="AppBundle\Entity\Project" inversed-by="builds">
+        	<join-column name="project_id" referenced-column-name="id" />
+        </many-to-one>
+        <many-to-one field="status" target-entity="AppBundle\Entity\Status">
+        	<join-column name="status_id" referenced-column-name="id" />
+        </many-to-one>
+        <one-to-many field="files" target-entity="AppBundle\Entity\BuildFile" mapped-by="build" />
+    </entity>
+</doctrine-mapping>

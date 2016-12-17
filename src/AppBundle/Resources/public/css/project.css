@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+.breadcum{
+	border: 2px solid lightblue;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 5px;
+}
+
+.build_list{
+	list-style-type: none;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="AppBundle\Entity\Error" table="api_error">
+        <id name="id" type="guid">
+            <generator strategy="UUID" />
+        </id>
+        <field name="date" type="datetime" />
+        <field name="message" type="text" />
+        <field name="code" type="integer" />
+        <many-to-one field="user" target-entity="AppBundle\Entity\ApiUser">
+        	<join-column name="user_id" referenced-column-name="id" />
+        </many-to-one>
+        
+		<many-to-many field="meta" target-entity="ErrorMeta">
+            <join-table name="api_error_error_meta">
+                <join-columns>
+                    <join-column name="error_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="meta_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

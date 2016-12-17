@@ -19,4 +19,4 @@
 .project
 .settings/
 composer.lock
-resources/
+/resources/
