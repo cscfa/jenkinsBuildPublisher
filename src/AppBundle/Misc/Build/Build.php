@@ -61,7 +61,9 @@ class Build
         $this->name = $name;
         $this->path = $path;
 
-        $this->initFiles();
+        if ($this->path !== null) {
+            $this->initFiles();
+        }
     }
 
     /**
@@ -113,6 +115,18 @@ class Build
     public function getFileNames()
     {
         return array_keys($this->files);
+    }
+
+    /**
+     * Get files
+     *
+     * Return the build files
+     *
+     * @return SplFileInfo[]
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 
     /**

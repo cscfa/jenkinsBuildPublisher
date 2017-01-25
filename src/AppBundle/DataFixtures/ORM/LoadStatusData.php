@@ -13,7 +13,8 @@ class LoadStatusData implements FixtureInterface
         $defaultStatus = array(
             Status::SUCCESS,
             Status::FAILED,
-            Status::UNSTABLE
+            Status::UNSTABLE,
+            Status::UNKNOW
         );
 
         $statusRepository = $manager->getRepository(Status::class);

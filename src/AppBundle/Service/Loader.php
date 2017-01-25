@@ -31,8 +31,18 @@ class Loader
         $finder = new ProjectFinder($this->resourceDir);
 
         $projects = $this->getProjects();
+        $localProjects = $finder->getProjects();
 
-        foreach ($finder->getProjects() as $project) {
+        foreach ($projects as $project) {
+            if (isset($localProjects[$project->getName()])) {
+                $this->loadProject(
+                    $localProjects[$project->getName()],
+                    $project
+                );
+            }
+        }
+
+        foreach ($localProjects as $project) {
             if (isset($projects[$project->getName()])) {
                 $this->loadProject(
                     $project,
@@ -61,8 +71,15 @@ class Loader
 
         $miscBuild = $project->getBuild($buildName);
 
-        $embedded = new EmbeddedBuild($buildName, $miscBuild->getPath());
-        $embedded->setStatus($build->getStatus()->getName());
+        $path = null;
+        if ($miscBuild !== null) {
+            $path = $miscBuild->getPath();
+        }
+        $embedded = new EmbeddedBuild($buildName, $path, $build);
+
+        if ($build->getStatus() !== null) {
+            $embedded->setStatus($build->getStatus()->getName());
+        }
 
         $project->replaceBuild($buildName, $embedded);
     }

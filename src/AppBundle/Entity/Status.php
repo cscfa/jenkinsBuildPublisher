@@ -7,6 +7,7 @@ class Status
     const SUCCESS = 'success';
     const FAILED = 'failed';
     const UNSTABLE = 'unstable';
+    const UNKNOW = 'unknow';
 
     private $id;
 

@@ -165,7 +165,11 @@ class Project
      */
     public function getBuild($build)
     {
-        return $this->builds[$build];
+        if (isset($this->builds[$build])) {
+            return $this->builds[$build];
+        }
+
+        return null;
     }
 
     /**
@@ -180,9 +184,7 @@ class Project
      */
     public function replaceBuild($buildName, Build $build)
     {
-        if ($this->hasBuild($buildName)) {
-            $this->builds[$buildName] = $build;
-        }
+        $this->builds[$buildName] = $build;
     }
 
 }
